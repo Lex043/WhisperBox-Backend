@@ -15,7 +15,7 @@ git clone https://github.com/Lex043/WhisperBox-Backend.git
 Ensure that you have Typescript and Postgresql installed on your machine
 
 ```
-cd WhisperBox-BE
+cd WhisperBox-Backend
 ```
 
 Run the following command to install the neccessary dependencies
