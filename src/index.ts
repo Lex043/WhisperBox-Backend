@@ -15,7 +15,7 @@ app.get("/", (_, res) => {
     res.status(200).json({ message: "Api is healthy.." });
 });
 
-app.use("/api/v1/auth", usernameRoute);
+app.use("/api/v1", usernameRoute);
 app.use("/api/v1", contentRoute);
 
 app.listen(PORT, () => {

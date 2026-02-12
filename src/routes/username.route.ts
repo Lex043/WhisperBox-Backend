@@ -3,5 +3,5 @@ import { userNameController } from "../controllers/username.controller";
 
 export const usernameRoute = Router();
 
-usernameRoute.post("/", userNameController.createUsername);
-usernameRoute.delete("/users/:username", userNameController.deleteUser);
+usernameRoute.post("/user", userNameController.createUsername);
+usernameRoute.delete("/user/:username", userNameController.deleteUser);
