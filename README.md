@@ -9,7 +9,7 @@ WhisperBox is an anonymous messaging platform that allows users to create a uniq
 Clone the repository to you local machine
 
 ```
-git clone https://github.com/Lex043/WhisperBox-BE.git
+git clone https://github.com/Lex043/WhisperBox-Backend.git
 ```
 
 Ensure that you have Typescript and Postgresql installed on your machine
