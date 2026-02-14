@@ -6,7 +6,7 @@ import { contentRoute } from "./routes/content.route";
 
 dotenv.config();
 const app = express();
-const PORT: number = parseInt(process.env.PORT as string);
+const PORT = Number(process.env.PORT) || 8000;
 
 app.use(cors());
 app.use(express.json());
