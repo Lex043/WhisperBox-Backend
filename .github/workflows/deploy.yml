@@ -1,0 +1,41 @@
+name: Deploy to EC2
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    backend:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v5
+
+            - name: Login to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name: Build and Push Docker image
+              uses: docker/build-push-action@v6
+              with:
+                  push: true
+                  tags: 10603/whisperbox:latest
+
+            - name: Deploy to EC2
+              uses: appleboy/ssh-action@v1
+              with:
+                  host: ${{ secrets.EC2_HOST }}
+                  username: ${{ secrets.EC2_USERNAME }}
+                  key: ${{ secrets.EC2_SSH_KEY }}
+                  script: |
+                      docker pull ${{ secrets.DOCKERHUB_USERNAME }}/whisperbox:latest
+                      docker stop whisperbox || true
+                      docker rm whisperbox || true
+                      docker run -d \
+                        --name whisperbox \
+                        -p 80:8000 \
+                        --env-file /home/ubuntu/.env \
+                        ${{ secrets.DOCKERHUB_USERNAME }}/whisperbox:latest

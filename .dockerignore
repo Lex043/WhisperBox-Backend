@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.env
+.env.example
+.env.local
+*.log
+*.db
+*.db-journal
+coverage
+.vscode
+.idea
+*.md
+test
+.DS_Store
