@@ -34,5 +34,5 @@ jobs:
                       docker run -d \
                         --name whisperbox \
                         -p 80:8000 \
-                        --env-file /home/ubuntu/.env \
+                        --env-file /home/ubuntu/whisperbox.env \
                         ${{ secrets.DOCKERHUB_USERNAME }}/whisperbox:latest
