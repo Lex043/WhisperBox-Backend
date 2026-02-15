@@ -29,15 +29,15 @@ jobs:
                   key: ${{ secrets.EC2_SSH_KEY }}
                   script: |
                       set -e
-                      echo "🚀 Connecting to server..."
-                      ls
-                      cd /home/ubuntu/whisperbox || exit 1
-                      echo "📥 Pull latest code..."
-                      git pull origin main
-                      echo "📦 Install dependencies (including drizzle)..."
-                      npm install
-                      echo "🗄️ Running migrations..."
-                      npx drizzle-kit push --config=drizzle.config.ts
+                      echo "Connecting to server..."
+
+                      echo "Pull latest Docker image..."
+                      docker pull ${{ secrets.DOCKERHUB_USERNAME }}/whisperbox:latest
+                      echo "Running migrations..."
+                        docker run --rm \
+                            --env-file /home/ubuntu/whisperbox.env \
+                            ${{ secrets.DOCKERHUB_USERNAME }}/whisperbox:latest \
+                            npx drizzle-kit push --config=drizzle.config.ts
                       docker pull ${{ secrets.DOCKERHUB_USERNAME }}/whisperbox:latest
                         docker stop whisperbox || true
                         docker rm whisperbox || true

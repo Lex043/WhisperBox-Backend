@@ -21,9 +21,11 @@ WORKDIR /src/app
 
 COPY package*.json ./
 
-RUN npm ci --omit=dev
+RUN npm ci
 
 COPY --from=builder /src/app/dist ./dist
+
+COPY drizzle.config.ts ./
 
 
 EXPOSE 8000
