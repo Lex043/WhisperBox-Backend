@@ -25,6 +25,8 @@ RUN npm ci
 
 COPY --from=builder /src/app/dist ./dist
 
+COPY src ./src
+
 COPY drizzle.config.ts ./
 
 
