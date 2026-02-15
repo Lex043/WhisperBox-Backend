@@ -30,6 +30,7 @@ jobs:
                   script: |
                       set -e
                       echo "🚀 Connecting to server..."
+                      ls
                       cd /home/ubuntu/whisperbox || exit 1
                       echo "📥 Pull latest code..."
                       git pull origin main
