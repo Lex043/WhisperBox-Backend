@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (_, res) => {
-    res.status(200).json({ message: "Api is healthy.." });
+    res.status(200).json({ message: "API is healthy.." });
 });
 
 app.use("/api/v1", usernameRoute);
