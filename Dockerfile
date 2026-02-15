@@ -25,9 +25,6 @@ RUN npm ci --omit=dev
 
 COPY --from=builder /src/app/dist ./dist
 
-# COPY Drizzle config and source files for migrations
-COPY --from=builder /src/app/drizzle.config.ts ./drizzle.config.ts
-COPY --from=builder /src/app/src/db ./src/db
 
 EXPOSE 8000
 
