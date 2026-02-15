@@ -25,6 +25,10 @@ RUN npm ci --omit=dev
 
 COPY --from=builder /src/app/dist ./dist
 
+COPY --from=builder /src/app/drizzle.config.ts ./drizzle.config.ts
+
+COPY --from=builder /src/app/src ./src
+
 EXPOSE 8000
 
-CMD ["node", "dist/index.js"]
+CMD ["sh", "-c", "npx tsx drizzle-kit push && node dist/index.js"]
